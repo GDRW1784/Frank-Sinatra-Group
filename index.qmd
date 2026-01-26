@@ -11,11 +11,12 @@ format:
 ```{r setup}
 #| include: false
 library(tidyverse)
+
 ```
 
 # Introduction
 
-##  {.sidebar}
+##  Column 1 {width="20%"}
 
 For our research on everyday music listening we decided to investigate the question
 
@@ -25,35 +26,33 @@ We think that it is worth investigating the possibility that people with a high 
 
 To do this we presented all of our subjects with the exact same memory task, except half of them (selected randomly) had to perform the tasks
 
-## Column 1 {width="60%"}
+## Column 2 {width="40%"}
 
 ```{r}
 #| title: Chart 1
 ggplot()
+
 ```
 
-## Column 2 {width="40%"}
+
+## Column 3 {width="40%"}
 
 ### Row 1
-
-This is more text. Below it, you'll see another row with a tabset.
-
-### Row 2 {.tabset}
-
 ```{r}
 #| title: Chart 2
 ggplot()
 ```
+
+### Row 2
 
 ```{r}
 #| title: Chart 3
 ggplot()
 ```
 
-# The Data
 
+# The Data
 
 # Methodology
 
-# Extras {}
-
+# Extras
