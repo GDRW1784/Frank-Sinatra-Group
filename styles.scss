@@ -16,21 +16,9 @@ body, .quarto-dashboard, .page-content, main {
   background-color: #222222 !important;
 }
 
-.sidebar {
-  background-color: #ffc0cb !important; /* superhero-ish dark */
-  color: #000 !important;
-}
-
-.sidebar a, .sidebar .nav-link {
-  color: #000 !important;
-}
-.sidebar a:hover, .sidebar .nav-link:hover {
-  color: #000 !important;
-}
-
 /* Dashboard cards that contain charts */
 .card,
 .quarto-dashboard .card {
-  background-color: #222222 !important;  /* light pink */
+  background-color: #222222 !important;  
   border-color: #000 !important;
 }
