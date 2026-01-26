@@ -1,8 +1,10 @@
 ---
-title: Everyday Music Listening
-author: Frank Sinatra Group
+title: Music Cognition and Memory
 format:
   dashboard:
+    theme: 
+    - superhero
+    - styles.scss
     orientation: columns
 ---
 
@@ -11,22 +13,28 @@ format:
 library(tidyverse)
 ```
 
-# Page 1
+# Introduction
 
-## {.sidebar}
+##  {.sidebar}
 
-This is a sidebar for the first page. Many students like to add general text descriptions here.
+For our research on everyday music listening we decided to investigate the question
 
-## Column 1 {width=60%}
+How does passive music listening affect performance for people of different levels of music cognition?
+
+We think that it is worth investigating the possibility that people with a high knowledge of music theory might get more or less distracted/affected by the presence of background music when performing a memory task.
+
+To do this we presented all of our subjects with the exact same memory task, except half of them (selected randomly) had to perform the tasks
+
+## Column 1 {width="60%"}
 
 ```{r}
 #| title: Chart 1
 ggplot()
 ```
 
-## Column 2 {width=40%}
+## Column 2 {width="40%"}
 
-### Row 1 
+### Row 1
 
 This is more text. Below it, you'll see another row with a tabset.
 
@@ -42,4 +50,10 @@ ggplot()
 ggplot()
 ```
 
-# Page 2
+# The Data
+
+
+# Methodology
+
+# Extras {}
+
