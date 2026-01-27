@@ -30,6 +30,9 @@ To do this we presented all of our subjects with the exact same memory task, exc
 
 ```{r}
 #| title: Memory Test Scores dependant on Background Music and Music Proficiency
+#| standalone: true
+#| echo: false
+
 library(ggplot2)
 library(dplyr)
 
@@ -80,6 +83,9 @@ sample estimates:
 ### Row 1
 ```{r}
 #| title: Boxplot of Memory Scores based on with/without Background Music
+#| standalone: true
+#| echo: false
+
 library(dplyr)
 library(ggplot2)
 
@@ -183,6 +189,9 @@ sample estimates:
 
 ```{r}
 #| title: How does time taken to memorize words impact test score?
+#| standalone: true
+#| echo: false
+
 # Plot
 ggplot(df, aes(
     x = Time,
