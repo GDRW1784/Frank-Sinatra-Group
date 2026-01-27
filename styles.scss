@@ -21,4 +21,70 @@ body, .quarto-dashboard, .page-content, main {
 .quarto-dashboard .card {
   background-color: #222222 !important;  
   border-color: #000 !important;
+
+}
+/* Quarto dashboard: chart card header (the title bar) */
+.quarto-dashboard .card-header {
+  background-color: #ffC0CB !important;
+  border-bottom: 1px solid #ffc0cb !important;
+}
+
+/* Title text inside the header */
+.quarto-dashboard .card-header,
+.quarto-dashboard .card-header .card-title,
+.quarto-dashboard .card-header h1,
+.quarto-dashboard .card-header h2,
+.quarto-dashboard .card-header h3 {
+  color: #000 !important;
+  font-weight: 400 !important;
+}
+
+/* =========================
+   NAVBAR BASE
+   ========================= */
+.navbar {
+  background-color: #ffc0cb !important; /* light pink */
+  border-bottom: 3px solid #f3a8c0 !important;
+}
+
+/* Brand / site title (Home button) */
+.navbar-brand {
+  color: #000 !important;
+  font-weight: 600 !important;
+}
+
+/* All navbar links */
+.navbar-nav .nav-link {
+  color: #000 !important;
+  font-weight: 500;
+}
+
+/* Hover state */
+.navbar-nav .nav-link:hover {
+  color: #222222 !important; /* darker pink */
+}
+
+/* Active / current page */
+.navbar-nav .nav-link.active,
+.navbar-nav .nav-link[aria-current="page"] {
+  color: #ffc0cb !important;
+  font-weight: 700 !important;
+  border-bottom: 2px solid #ffc0cb;
+}
+
+/* Remove pink/blue background on hover, focus, click */
+.navbar-nav .nav-link:hover,
+.navbar-nav .nav-link:focus,
+.navbar-nav .nav-link:active {
+  background-color: #222222 !important;
+  color: #ffc0cb !important;
+  box-shadow: none !important;
+  outline: none !important;
+}
+
+.navbar-nav .nav-link.active,
+.navbar-nav .nav-link[aria-current="page"] {
+  background-color: #fff !important;
+  color: #000 !important;
+  font-weight: 700 !important;
 }
