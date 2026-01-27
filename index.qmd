@@ -29,19 +29,146 @@ To do this we presented all of our subjects with the exact same memory task, exc
 ## Column 2 {width="40%"}
 
 ```{r}
-#| title: Chart 1
-ggplot()
+#| title: Memory Test Scores dependant on Background Music and Music Proficiency
+library(ggplot2)
 
+ggplot(`test data`, aes(
+  x = Total.Gold.MSI.Score,
+  y = Memory.Score,
+  color = With.music.or.not
+)) +
+  geom_point(size = 3, alpha = 0.7) +
+  geom_smooth(method = "lm", se = FALSE) +
+  scale_color_manual(
+    values = c("No" = "#1f77b4",   # blue
+               "Yes" = "#ff7f0e")  # orange
+  ) +
+  labs(
+    title = "Memory Score vs. MSI Score with/without Background Music",
+    x = "Total Gold MSI Score",
+    y = "Memory Score",
+    color = "With Music (Yes or No)"
+  ) +
+  theme_minimal()
 ```
+# Testing correlation between MSI score and Memory Score, then using p-value to check whether such correlation is significant
 
+	Pearson's product-moment correlation
+
+t = 0.70209, df = 48, p-value = 0.486
+alternative hypothesis: true correlation is not equal to 0
+95 percent confidence interval:
+ -0.1826516  0.3688193
+sample estimates:
+     cor 
+0.100822 
 
 ## Column 3 {width="40%"}
 
 ### Row 1
 ```{r}
-#| title: Chart 2
-ggplot()
+#| title: Boxplot of Memory Scores based on with/without Background Music
+library(dplyr)
+library(ggplot2)
+
+df <- `test data` %>%
+  mutate(With.music.or.not = factor(With.music.or.not, levels = c("No", "Yes")))
+  
+# Compute stats
+stats <- df %>%
+  group_by(With.music.or.not) %>%
+  summarise(
+    Q1 = quantile(Memory.Score, 0.25),
+    Q3 = quantile(Memory.Score, 0.75),
+    IQR = Q3 - Q1,
+    lower = max(min(Memory.Score), Q1 - 1.5 * IQR),
+    upper = min(max(Memory.Score), Q3 + 1.5 * IQR),
+    mean = mean(Memory.Score),
+    median = median(Memory.Score),
+    min = min(Memory.Score),
+    max = max(Memory.Score),
+    xpos = as.numeric(With.music.or.not),
+    .groups = "drop"
+  )
+
+ggplot(df, aes(
+  x = With.music.or.not,
+  y = Memory.Score
+)) +
+  geom_boxplot(
+    width = 0.25,
+    outlier.shape = 16,
+    outlier.size = 2.5,
+    color = "black",
+    fill = NA
+  ) +
+  # Whisker caps
+  geom_segment(
+    data = stats,
+    aes(x = xpos - 0.1, xend = xpos + 0.1, y = lower, yend = lower),
+    linewidth = 0.9
+  ) +
+  geom_segment(
+    data = stats,
+    aes(x = xpos - 0.1, xend = xpos + 0.1, y = upper, yend = upper),
+    linewidth = 0.9
+  ) +
+  # Mean line (dashed)
+  geom_segment(
+    data = stats,
+    aes(x = xpos - 0.1, xend = xpos + 0.1, y = mean, yend = mean),
+    linewidth = 0.8,
+    linetype = "dashed"
+  ) +
+  # Labels at actual positions
+  geom_text(
+    data = stats,
+    aes(x = xpos + 0.15, y = median, label = paste0("Median: ", round(median, 2))),
+    hjust = 0,
+    size = 3.5
+  ) +
+  geom_text(
+    data = stats,
+    aes(x = xpos + 0.15, y = mean, label = paste0("Mean: ", round(mean, 2))),
+    hjust = 0,
+    size = 3.5
+  ) +
+  geom_text(
+    data = stats,
+    aes(x = xpos + 0.15, y = lower, label = paste0("Min: ", round(min, 2))),
+    hjust = 0,
+    size = 3.5
+  ) +
+  geom_text(
+    data = stats,
+    aes(x = xpos + 0.15, y = upper, label = paste0("Max: ", round(max, 2))),
+    hjust = 0,
+    size = 3.5
+  ) +
+  scale_y_continuous(limits = c(0, 22), breaks = seq(0, 20, 2)) +
+  labs(
+    title = "Score from Memory Test by With Background Music or Not",
+    x = "With Background Music or Not",
+    y = "Score from Memory Test"
+  ) +
+  theme_minimal(base_size = 14) +
+  theme(
+    panel.grid.major.x = element_blank(),
+    panel.grid.minor = element_blank(),
+    legend.position = "none"
+  )
 ```
+## t-test statistic and p-value whether there's significance difference between means of with and without background music
+'''
+Welch Two Sample t-test
+
+t = -1.3042, df = 47.827, p-value = 0.1984
+alternative hypothesis: true difference in means between group No and group Yes is not equal to 0
+95 percent confidence interval:
+ -3.9267855  0.8370419
+sample estimates:
+ mean in group No mean in group Yes 
+         12.53846          14.08333 
 
 ### Row 2
 
