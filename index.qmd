@@ -31,8 +31,18 @@ To do this we presented all of our subjects with the exact same memory task, exc
 ```{r}
 #| title: Memory Test Scores dependant on Background Music and Music Proficiency
 library(ggplot2)
+library(dplyr)
 
-ggplot(`test data`, aes(
+df <- read.csv("qualtrics data.csv")
+
+df <- df %>%
+  rename(
+    With.music.or.not = Music.Background,
+    Memory.Score = Score,
+    Total.Gold.MSI.Score = TOTAL.MSI.SCORE
+  )
+
+ggplot(df, aes(
   x = Total.Gold.MSI.Score,
   y = Memory.Score,
   color = With.music.or.not
@@ -40,8 +50,10 @@ ggplot(`test data`, aes(
   geom_point(size = 3, alpha = 0.7) +
   geom_smooth(method = "lm", se = FALSE) +
   scale_color_manual(
-    values = c("No" = "#1f77b4",   # blue
-               "Yes" = "#ff7f0e")  # orange
+    values = c(
+      "No" = "#1f77b4",
+      "Yes" = "#ff7f0e"
+    )
   ) +
   labs(
     title = "Memory Score vs. MSI Score with/without Background Music",
@@ -71,10 +83,9 @@ sample estimates:
 library(dplyr)
 library(ggplot2)
 
-df <- `test data` %>%
+df <- df %>%
   mutate(With.music.or.not = factor(With.music.or.not, levels = c("No", "Yes")))
-  
-# Compute stats
+
 stats <- df %>%
   group_by(With.music.or.not) %>%
   summarise(
@@ -102,7 +113,6 @@ ggplot(df, aes(
     color = "black",
     fill = NA
   ) +
-  # Whisker caps
   geom_segment(
     data = stats,
     aes(x = xpos - 0.1, xend = xpos + 0.1, y = lower, yend = lower),
@@ -113,14 +123,12 @@ ggplot(df, aes(
     aes(x = xpos - 0.1, xend = xpos + 0.1, y = upper, yend = upper),
     linewidth = 0.9
   ) +
-  # Mean line (dashed)
   geom_segment(
     data = stats,
     aes(x = xpos - 0.1, xend = xpos + 0.1, y = mean, yend = mean),
     linewidth = 0.8,
     linetype = "dashed"
   ) +
-  # Labels at actual positions
   geom_text(
     data = stats,
     aes(x = xpos + 0.15, y = median, label = paste0("Median: ", round(median, 2))),
@@ -160,23 +168,61 @@ ggplot(df, aes(
 ```
 ## t-test statistic and p-value whether there's significance difference between means of with and without background music
 '''
-Welch Two Sample t-test
+	Welch Two Sample t-test
 
-t = -1.3042, df = 47.827, p-value = 0.1984
+data:  Memory.Score by With.music.or.not
+t = -1.6278, df = 49.576, p-value = 0.1099
 alternative hypothesis: true difference in means between group No and group Yes is not equal to 0
 95 percent confidence interval:
- -3.9267855  0.8370419
+ -4.2532149  0.4458075
 sample estimates:
  mean in group No mean in group Yes 
-         12.53846          14.08333 
+          12.2963           14.2000 
 
 ### Row 2
 
 ```{r}
-#| title: Chart 3
-ggplot()
+#| title: How does time taken to memorize words impact test score?
+# Plot
+ggplot(df, aes(
+    x = Time,
+    y = Memory.Score,
+    color = With.music.or.not
+)) +
+    geom_point(size = 3, alpha = 0.7) +
+    geom_smooth(method = "lm", se = FALSE) +
+    scale_color_manual(
+        values = c(
+            "No" = "#1f77b4",   # blue
+            "Yes" = "#ff7f0e"   # orange
+        )
+    ) +
+    labs(
+        title = "Time (seconds) vs Memory Score by Background Music Condition",
+        x = "Time (seconds)",
+        y = "Memory Score",
+        color = "With Music"
+    ) +
+    theme_minimal(base_size = 14)
 ```
+# testing whether longer waiting time does significantly influence test score
+Call:
+lm(formula = Memory.Score ~ Time, data = df)
 
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-6.1883 -2.2006 -0.0195  1.8202 10.0378 
+
+Coefficients:
+            Estimate Std. Error t value Pr(>|t|)    
+(Intercept)  8.17768    0.98423   8.309 5.56e-11 ***
+Time         0.03787    0.00652   5.808 4.35e-07 ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Residual standard error: 3.362 on 50 degrees of freedom
+Multiple R-squared:  0.4028,	Adjusted R-squared:  0.3909 
+F-statistic: 33.73 on 1 and 50 DF,  p-value: 4.349e-07
 
 # The Data
 
