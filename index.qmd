@@ -25,11 +25,9 @@ df <- df %>%
 
 ```
 
+
 # Introduction
 
-## Row 1
-
-##  Column 1 {width="20%"}
 
 For our research on everyday music listening we decided to investigate the question
 
@@ -39,7 +37,155 @@ We think that it is worth investigating the possibility that people with a high 
 
 To do this we presented all of our subjects with the exact same memory task, except half of them (selected randomly) had to perform the tasks
 
-## Column 2 {width="40%"}
+## Row 1
+### Column 1 {width="60%"}
+```{r}
+#| title: Memory Test Scores Dependent on Background Music and Music Proficiency
+#| echo: false
+
+ggplot(df, aes(
+  x = Total.Gold.MSI.Score,
+  y = Memory.Score,
+  color = With.music.or.not
+)) +
+  geom_point(size = 3, alpha = 0.7) +
+  geom_smooth(method = "lm", se = FALSE) +
+  scale_color_manual(
+    values = c(
+      "No" = "#1f77b4",
+      "Yes" = "#ff7f0e"
+    )
+  ) +
+  labs(
+    title = "Memory Score vs. MSI Score with/without Background Music",
+    x = "Total Gold MSI Score",
+    y = "Memory Score",
+    color = "With Music (Yes or No)"
+  ) +
+  theme_minimal()
+```
+
+### Column 2 {width="40%"}
+```{r}
+#| title: Boxplot of Memory Scores Based on With/Without Background Music
+#| echo: false
+
+
+stats <- df %>%
+  group_by(With.music.or.not) %>%
+  summarise(
+    Q1 = quantile(Memory.Score, 0.25),
+    Q3 = quantile(Memory.Score, 0.75),
+    IQR = Q3 - Q1,
+    lower = max(min(Memory.Score), Q1 - 1.5 * IQR),
+    upper = min(max(Memory.Score), Q3 + 1.5 * IQR),
+    mean = mean(Memory.Score),
+    median = median(Memory.Score),
+    min = min(Memory.Score),
+    max = max(Memory.Score),
+    xpos = as.numeric(With.music.or.not),
+    .groups = "drop"
+  )
+
+ggplot(df, aes(
+  x = With.music.or.not,
+  y = Memory.Score
+)) +
+  geom_boxplot(
+    width = 0.25,
+    outlier.shape = 16,
+    outlier.size = 2.5,
+    color = "black",
+    fill = NA
+  ) +
+  geom_segment(
+    data = stats,
+    aes(x = xpos - 0.1, xend = xpos + 0.1, y = lower, yend = lower),
+    linewidth = 0.9
+  ) +
+  geom_segment(
+    data = stats,
+    aes(x = xpos - 0.1, xend = xpos + 0.1, y = upper, yend = upper),
+    linewidth = 0.9
+  ) +
+  geom_segment(
+    data = stats,
+    aes(x = xpos - 0.1, xend = xpos + 0.1, y = mean, yend = mean),
+    linewidth = 0.8,
+    linetype = "dashed"
+  ) +
+  geom_text(
+    data = stats,
+    aes(x = xpos + 0.15, y = median, label = paste0("Median: ", round(median, 2))),
+    hjust = 0,
+    size = 3.5
+  ) +
+  geom_text(
+    data = stats,
+    aes(x = xpos + 0.15, y = mean, label = paste0("Mean: ", round(mean, 2))),
+    hjust = 0,
+    size = 3.5
+  ) +
+  geom_text(
+    data = stats,
+    aes(x = xpos + 0.15, y = lower, label = paste0("Min: ", round(min, 2))),
+    hjust = 0,
+    size = 3.5
+  ) +
+  geom_text(
+    data = stats,
+    aes(x = xpos + 0.15, y = upper, label = paste0("Max: ", round(max, 2))),
+    hjust = 0,
+    size = 3.5
+  ) +
+  scale_y_continuous(limits = c(0, 22), breaks = seq(0, 20, 2)) +
+  labs(
+    title = "Score from Memory Test by With Background Music or Not",
+    x = "With Background Music or Not",
+    y = "Score from Memory Test"
+  ) +
+  theme_minimal(base_size = 14) +
+  theme(
+    panel.grid.major.x = element_blank(),
+    panel.grid.minor = element_blank(),
+    legend.position = "none"
+  )
+```
+
+### Column 2 {width="40%"}
+```{r}
+#| title: How Does the Time Taken to Memorize Words Impact Test Score?
+#| echo: false
+
+# Plot
+ggplot(df, aes(
+    x = Time,
+    y = Memory.Score,
+    color = With.music.or.not
+)) +
+    geom_point(size = 3, alpha = 0.7) +
+    geom_smooth(method = "lm", se = FALSE) +
+    scale_color_manual(
+        values = c(
+            "No" = "#1f77b4",   # blue
+            "Yes" = "#ff7f0e"   # orange
+        )
+    ) +
+    labs(
+        title = "Time (seconds) vs Memory Score by Background Music Condition",
+        x = "Time (seconds)",
+        y = "Memory Score",
+        color = "With Music"
+    ) +
+    theme_minimal(base_size = 14)
+```
+
+
+
+# Results
+## Row 1
+### Column 1 {.tabset width="50%"}
+#### Memory Test Scores
 
 ```{r}
 #| title: Memory Test Scores dependant on Background Music and Music Proficiency
@@ -67,9 +213,7 @@ ggplot(df, aes(
   theme_minimal()
 ```
 
-### Row 2
-
-## Column 3 {width="40%"}
+#### Boxplot Memory Scores
 
 ```{r}
 #| title: Boxplot of Memory Scores based on with/without Background Music
@@ -157,9 +301,10 @@ ggplot(df, aes(
   )
 ```
 
-
+#### Time Taken to Memorize 
 ```{r}
-#| title: How does time taken to memorize words impact test score?
+#| title: How does the time taken to memorize words impact test score?
+#| echo: false
 
 # Plot
 ggplot(df, aes(
@@ -183,9 +328,16 @@ ggplot(df, aes(
     ) +
     theme_minimal(base_size = 14)
 ```
+### Column 2 {.tabset width="50%"}
+#### Hypotheses 
+explain hypotheses 
 
-# The Data
+#### GoldMSI
+explain goldmsi
+
+
 
 # Methodology
 
-# Extras
+
+# Appendix
