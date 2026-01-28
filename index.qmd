@@ -29,9 +29,14 @@ df <- df %>%
 # Introduction 
 
 ## {.sidebar}
+
 <div style="color:#000;">
 
 Introduction
+<audio controls>
+  <source src="audiofil.mp3" type="audio/mpeg">
+</audio>  <br>
+
 Music is a big part of everyday life. Many people listen to music while studying, working, or doing tasks that require focus, often believing it helps them concentrate or remember information better. However, research on background music and memory shows mixed results. For some people, music can be helpful or motivating, while for others it may be distracting and interfere with performance.
 
 In this study, we explore how passive background music affects memory performance, and whether this effect differs depending on a person’s level of music cognition. Specifically, we are interested in whether people with more musical knowledge or training are more or less affected by background music when completing a memory task. To investigate this, all participants completed the same memory test, with half randomly assigned to perform the task while listening to background music and the other half completing it in silence.
@@ -196,27 +201,59 @@ ggplot(df, aes(
 
 ### Methodology {Height = "50%"}
 
-Methodology
+<div style="color:#000;">
+
+*Methodology*
+
+Participants completed an online survey consisting of a musical background questionnaire and a memory task. All participants were given the same word-based memory test, but were randomly assigned to one of two conditions: completing the task with background music or completing it in silence.
+
+Participants were allowed to take as much time as they needed to memorise the words before completing the test. The time spent memorising was recorded for each participant. Memory performance was measured as the number of words correctly recalled. This design allowed us to examine how background music, musical proficiency, and study time each related to memory performance.
+
+</div>
 
 
 ### Survey {Height = "50%"}
+<div style="color:#000;">
 
-Survey
-<audio controls>
-  <source src="audiofil.mp3" type="audio/mpeg">
-</audio>  <br>
+*Survey*
+
+The study was conducted using an online survey designed to capture both musical background information and memory performance. Participants first completed a short questionnaire assessing their musical experience and engagement, including items from the Goldsmiths Musical Sophistication Index (Gold-MSI).
+
+Participants then completed a word-based memory task. They were randomly assigned to complete the task either while listening to background music or in silence. Before completing the memory test, participants were given unlimited time to memorise the words, and the time spent studying was recorded. The survey collected participants’ memory scores, study time, music condition, and musical proficiency, which were later used for statistical analysis.
+
+
+https://uva.fra1.qualtrics.com/jfe/form/SV_4SpmgRTpQnsEp0i
+
+</div>
 
 ## Column 2 {Width = "50%"}
 
 ### Gold MSI {Height = "50%"}
 
-Gold MSI
+<div style="color:#000;">
+*Gold MSI*
+
+Musical proficiency was measured using the Goldsmiths Musical Sophistication Index (Gold-MSI). The Gold-MSI is a widely used self-report measure that assesses musical engagement, training, and perceptual abilities.
+
+Each participant received an overall MSI score, which was used as a continuous measure of music cognition. This allowed us to explore whether individuals with higher levels of musical knowledge or experience performed differently on the memory task, particularly in the presence of background music.
+
+
+
+</div>
 
 ### Data {Height = "50%"}
 
-Data
+<div style="color:#000;">
+*Data*
+The dataset includes participants’ memory test scores, Gold-MSI scores, background music condition (music or no music), and the time spent memorising the words. Statistical analyses were conducted to examine relationships between these variables.
+
+Correlation analysis showed no significant relationship between Gold-MSI score and memory performance. Similarly, there was no statistically significant difference in average memory scores between participants who completed the task with background music and those who completed it without music.
+
+In contrast, time spent memorising had a strong and statistically significant effect on memory performance, with longer study times leading to higher scores. Further analysis showed that this effect was consistent across both music conditions, indicating that background music did not significantly alter the impact of study time on memory performance.
+</div>
 
 # Results
+
 ## Row 1
 ### Column 1 {.tabset width="50%"}
 #### Memory Test Scores
@@ -364,7 +401,10 @@ ggplot(df, aes(
 ```
 ### Column 2 {.tabset width="50%"}
 #### Hypotheses 
-explain hypotheses 
+<div style="color:#000;">
+
+We hypothesize that participants with higher musical sophistication will perform worse on cognitive tasks when background music is present than participants with lower musical sophistication. This effect is expected because musically sophisticated individuals may engage more actively with the music, even unintentionally, reducing the cognitive resources available for task performance.
+</div>
 
 #### GoldMSI
 explain goldmsi
