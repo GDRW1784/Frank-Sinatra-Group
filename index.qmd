@@ -26,8 +26,9 @@ df <- df %>%
 ```
 
 
-# Introduction
+# Introduction 
 
+<div style="color:#000;">
 
 For our research on everyday music listening we decided to investigate the question
 
@@ -35,7 +36,9 @@ How does passive music listening affect performance for people of different leve
 
 We think that it is worth investigating the possibility that people with a high knowledge of music theory might get more or less distracted/affected by the presence of background music when performing a memory task.
 
-To do this we presented all of our subjects with the exact same memory task, except half of them (selected randomly) had to perform the tasks
+To do this we presented all of our subjects with the exact same memory task, except half of them (selected randomly) had to perform the tasks.
+</div>
+
 
 ## Row 1
 ### Column 1 {width="60%"}
@@ -180,7 +183,7 @@ ggplot(df, aes(
     theme_minimal(base_size = 14)
 ```
 
-# Our research 
+# Our Research 
 
 ## Column 1 {Width = "50%"}
 
