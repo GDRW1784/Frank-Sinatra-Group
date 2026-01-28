@@ -28,20 +28,26 @@ df <- df %>%
 
 # Introduction 
 
+## {.sidebar}
 <div style="color:#000;">
 
-For our research on everyday music listening we decided to investigate the question
+Introduction
+Music is a big part of everyday life. Many people listen to music while studying, working, or doing tasks that require focus, often believing it helps them concentrate or remember information better. However, research on background music and memory shows mixed results. For some people, music can be helpful or motivating, while for others it may be distracting and interfere with performance.
 
-How does passive music listening affect performance for people of different levels of music cognition?
+In this study, we explore how passive background music affects memory performance, and whether this effect differs depending on a person’s level of music cognition. Specifically, we are interested in whether people with more musical knowledge or training are more or less affected by background music when completing a memory task. To investigate this, all participants completed the same memory test, with half randomly assigned to perform the task while listening to background music and the other half completing it in silence.
 
-We think that it is worth investigating the possibility that people with a high knowledge of music theory might get more or less distracted/affected by the presence of background music when performing a memory task.
+By comparing performance across these conditions, this study aims to better understand how everyday music listening interacts with memory, and whether individual differences in musical experience play a role.
 
-To do this we presented all of our subjects with the exact same memory task, except half of them (selected randomly) had to perform the tasks.
+Motivation
+Background music is extremely common in daily life, especially among students. Many people rely on music while studying, even though they are not always sure whether it actually helps or hurts their performance. At the same time, people differ widely in how they experience and process music. Someone with strong musical training may pay more attention to musical structure, while others may treat music as simple background noise.
+
+This raises an interesting question: does musical proficiency change how distracting or helpful background music is during memory tasks? Despite how relevant this question is to real-life study habits, it has not been explored in depth. Understanding these differences could help people make more informed decisions about when listening to music is beneficial and when silence might be more effective.
+
+The motivation behind this research is to connect everyday music listening habits with cognitive performance in a realistic context. By examining both background music and musical proficiency together, this study aims to provide practical insight into how music influences memory in everyday situations.
 </div>
 
 
-## Row 1
-### Column 1 {width="60%"}
+## Column 1 {width="60%"}
 ```{r}
 #| title: Memory Test Scores Dependent on Background Music and Music Proficiency
 #| echo: false
@@ -68,7 +74,8 @@ ggplot(df, aes(
   theme_minimal()
 ```
 
-### Column 2 {width="40%"}
+## Column 2 {width="40%"}
+### Row 1
 ```{r}
 #| title: Boxplot of Memory Scores Based on With/Without Background Music
 #| echo: false
@@ -155,7 +162,7 @@ ggplot(df, aes(
   )
 ```
 
-### Column 2 {width="40%"}
+### Row 2{width="40%"}
 ```{r}
 #| title: How Does the Time Taken to Memorize Words Impact Test Score?
 #| echo: false
