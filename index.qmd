@@ -180,7 +180,31 @@ ggplot(df, aes(
     theme_minimal(base_size = 14)
 ```
 
+# Our research 
 
+## Column 1 {Width = "50%"}
+
+### Methodology {Height = "50%"}
+
+Methodology
+
+
+### Survey {Height = "50%"}
+
+Survey
+<audio controls>
+  <source src="audiofil.mp3" type="audio/mpeg">
+</audio>  <br>
+
+## Column 2 {Width = "50%"}
+
+### Gold MSI {Height = "50%"}
+
+Gold MSI
+
+### Data {Height = "50%"}
+
+Data
 
 # Results
 ## Row 1
@@ -336,8 +360,38 @@ explain hypotheses
 explain goldmsi
 
 
+# Appendix 
 
-# Methodology
+## Everything {.tabset}
+
+### Other Graphs {.tabset}
+
+#### Heatmap
+Insert graphs
+
+#### etc
+Insert graphs
 
 
-# Appendix
+### Article Reviews {.tabset}
+
+#### Review 1
+Insert Article Reviews here
+
+#### Review 2 
+Insert Article Reviews here
+
+#### Review 3
+Insert Article Reviews here
+
+#### Review 4 
+Insert Article Reviews here
+
+#### Review 5 
+Insert Article Reviews here
+
+### Resources 
+
+Insert resources or bibliography or whatever
+
+
