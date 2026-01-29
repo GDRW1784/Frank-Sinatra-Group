@@ -1,102 +1,18 @@
 /*-- scss:rules --*/
-.navbar {
-  background-color: #ffc0cb !important;
-}
-
-.navbar-nav .nav-link,
-.navbar-brand {
-  color: #fff !important;
-}
-
-.navbar-nav .nav-link:hover {
-  color: #fff !important;
-
-}
-body, .quarto-dashboard, .page-content, main {
-  background-color: #fff !important;
-}
-
-/* Dashboard cards that contain charts */
-.card,
-.quarto-dashboard .card {
-  background-color: #fff !important;  
-  border-color: #000 !important;
-
-}
-/* Quarto dashboard: chart card header (the title bar) */
-.quarto-dashboard .card-header {
-  background-color: #ffC0CB !important;
-  border-bottom: 1px solid #ffc0cb !important;
-}
-
-/* Title text inside the header */
-.quarto-dashboard .card-header,
-.quarto-dashboard .card-header .card-title,
-.quarto-dashboard .card-header h1,
-.quarto-dashboard .card-header h2,
-.quarto-dashboard .card-header h3 {
-  color: #000 !important;
-  font-weight: 400 !important;
-}
 
 /* =========================
-   NAVBAR BASE
+   KLEUREN
    ========================= */
-.navbar {
-  background-color: #ffc0cb !important; /* light pink */
-  border-bottom: 3px solid #f3a8c0 !important;
-}
+$pink: #ffc0cb;
+$pink-dark: #f3a8c0;
+$black: #000;
+$white: #fff;
 
-/* Brand / site title (Home button) */
-.navbar-brand {
-  color: #000 !important;
-  font-weight: 600 !important;
-}
-
-/* All navbar links */
-.navbar-nav .nav-link {
-  color: #000 !important;
-  font-weight: 500;
-}
-
-/* Hover state */
-.navbar-nav .nav-link:hover {
-  color: #222222 !important; /* darker pink */
-}
-
-/* Active / current page */
-.navbar-nav .nav-link.active,
-.navbar-nav .nav-link[aria-current="page"] {
-  color: #ffc0cb !important;
-  font-weight: 700 !important;
-  border-bottom: 2px solid #ffc0cb;
-}
-
-/* Remove pink/blue background on hover, focus, click */
-.navbar-nav .nav-link:hover,
-.navbar-nav .nav-link:focus,
-.navbar-nav .nav-link:active {
-  background-color: #222222 !important;
-  color: #ffc0cb !important;
-  box-shadow: none !important;
-  outline: none !important;
-}
-
-.navbar-nav .nav-link.active,
-.navbar-nav .nav-link[aria-current="page"] {
-  background-color: #fff !important;
-  color: #000 !important;
-  font-weight: 700 !important;
-}
-
-
-
-/* HTML + body */
-html, body {
-  background-color: #ffffff !important;
-}
-
-/* Quarto dashboard outer shells */
+/* =========================
+   BASIS LAYOUT
+   ========================= */
+html,
+body,
 .quarto-container,
 .quarto-dashboard,
 .dashboard-page,
@@ -105,14 +21,159 @@ html, body {
 main,
 .content,
 #quarto-content {
-  background-color: #ffffff !important;
+  background-color: $white !important;
+  color: $black !important;
 }
 
-body, .content, .page-columns, .quarto-dashboard {
-  color: #000 !important;
+/* =========================
+   PLAY BUTTON
+   ========================= */
+.play-button {
+  background-color: $pink-dark !important;
+  color: $black !important;
+  border: none;
+  border-radius: 50%;
+  width: 100px;
+  height: 100px;
+  font-size: 20px;
+  cursor: pointer;
+
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+
+  &:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+    background-color: $pink-dark !important;
+  }
+
+  &:active {
+    transform: scale(0.95);
+  }
 }
 
-/* Only affect the Introduction section */
-.intro, .intro p, .intro li {
-  color: #000 !important;   /* or any color */
+.play-button-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
+
+
+/* =========================
+   NAVBAR
+   ========================= */
+.navbar {
+  background-color: $pink !important;
+  border-bottom: 3px solid $pink-dark !important;
+
+  .navbar-brand {
+    color: $white !important;
+  }
+
+  .navbar-nav {
+    .nav-link {
+      color: $black !important;
+      font-weight: 500;
+
+      &:hover,
+      &:focus,
+      &:active {
+        background-color: #222 !important;
+        color: $pink !important;
+        box-shadow: none !important;
+        outline: none !important;
+      }
+
+      &.active,
+      &[aria-current="page"] {
+        background-color: $white !important;
+        color: $black !important;
+        font-weight: 700 !important;
+        border-bottom: 2px solid $pink;
+      }
+    }
+  }
+}
+
+/* =========================
+   DASHBOARD CARDS
+   ========================= */
+.card,
+.quarto-dashboard .card {
+  background-color: $white !important;
+  border-color: $black !important;
+}
+
+/* Card header (titelbalk) */
+.quarto-dashboard {
+  .card-header {
+    background-color: $pink !important;
+    border-bottom: 1px solid $pink !important;
+
+    &,
+    .card-title,
+    h1,
+    h2,
+    h3 {
+      color: $black !important;
+      font-weight: 400 !important;
+    }
+  }
+}
+
+/* =========================
+   INTRO SECTIE
+   ========================= */
+.intro {
+  &,
+  p,
+  li {
+    color: $black !important;
+  }
+}
+
+/* =========================
+   CARD HEADER TABS
+   ========================= */
+.card-header-tabs {
+  .nav-link {
+    color: $black !important;
+  }
+}
+
+/* =========================
+   SIDEBAR
+   ========================= */
+.sidebar,
+.sidebar-navigation,
+#quarto-sidebar {
+  background-color: $pink !important;
+  border-right: 1px solid $pink-dark !important;
+}
+
+/* Sidebar links */
+.sidebar a,
+.sidebar .nav-link {
+  color: $black !important;
+  font-weight: 500;
+
+  &:hover,
+  &:focus {
+    background-color: $white !important;
+    color: $black !important;
+  }
+}
+
+/* Actieve sidebar link */
+.sidebar .nav-link.active,
+.sidebar .nav-link[aria-current="page"] {
+  background-color: $white !important;
+  color: $black !important;
+  font-weight: 700 !important;
+}
+
