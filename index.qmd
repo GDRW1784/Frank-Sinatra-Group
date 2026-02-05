@@ -60,29 +60,34 @@ The motivation behind this research is to connect everyday music listening habit
 
 ## Column 1 {width="60%"}
 ```{r}
-#| title: Memory Test Scores Dependent on Background Music and Music Proficiency
+#| title: Density Heatmaps for Memory Scores dependent on Total Gold MSI Score
 #| echo: false
 
 ggplot(df, aes(
   x = Total.Gold.MSI.Score,
-  y = Memory.Score,
-  color = With.music.or.not
+  y = Memory.Score
 )) +
-  geom_point(size = 3, alpha = 0.7) +
-  geom_smooth(method = "lm", se = FALSE) +
-  scale_color_manual(
-    values = c(
-      "No" = "#1f77b4",
-      "Yes" = "#ff7f0e"
-    )
+  stat_density_2d_filled(contour_var = "ndensity") +
+  facet_wrap(~ With.music.or.not) +
+  scale_fill_viridis_d(
+    option = "plasma",
+    name = "Density Level"
   ) +
   labs(
-    title = "Memory Score vs. MSI Score with/without Background Music",
+    title = "Density Heatmap of Memory Score vs. MSI Score",
     x = "Total Gold MSI Score",
-    y = "Memory Score",
-    color = "With Music (Yes or No)"
+    y = "Memory Score"
   ) +
-  theme_minimal()
+  ylim(0, 20) +
+  theme_minimal(base_size = 14) +
+  theme(
+    strip.text = element_text(face = "bold", size = 14),
+    legend.title = element_text(face = "bold"),
+    legend.text = element_text(size = 11),
+    legend.key.height = unit(0.8, "cm"),
+    legend.key.width = unit(0.4, "cm")
+  )
+
 ```
 
 ## Column 2 {width="40%"}
