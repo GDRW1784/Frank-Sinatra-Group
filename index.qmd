@@ -58,7 +58,35 @@ This raises an interesting question: does musical proficiency change how distrac
 The motivation behind this research is to connect everyday music listening habits with cognitive performance in a realistic context. By examining both background music and musical proficiency together, this study aims to provide practical insight into how music influences memory in everyday situations.
 
 
-## Column 1 {width="60%"}
+## Column 1 {width="58%"}
+```{r}
+#| title: Memory Test Scores dependant on Background Music and Music Proficiency
+#| echo: false
+
+ggplot(df, aes(
+  x = Total.Gold.MSI.Score,
+  y = Memory.Score,
+  color = With.music.or.not
+)) +
+  geom_point(size = 3, alpha = 0.7) +
+  geom_smooth(method = "lm", se = FALSE) +
+  scale_color_manual(
+    values = c(
+      "No" = "#1f77b4",
+      "Yes" = "#ff7f0e"
+    )
+  ) +
+  labs(
+    title = "Memory Score vs. MSI Score with/without Background Music",
+    x = "Total Gold MSI Score",
+    y = "Memory Score",
+    color = "With Music (Yes or No)"
+  ) +
+  theme_minimal()
+```
+
+## Column 2 {width="42%"}
+### Row 1
 ```{r}
 #| title: Density Heatmaps for Memory Scores dependent on Total Gold MSI Score
 #| echo: false
@@ -88,94 +116,6 @@ ggplot(df, aes(
     legend.key.width = unit(0.4, "cm")
   )
 
-```
-
-## Column 2 {width="40%"}
-### Row 1
-```{r}
-#| title: Boxplot of Memory Scores Based on With/Without Background Music
-#| echo: false
-
-
-stats <- df %>%
-  group_by(With.music.or.not) %>%
-  summarise(
-    Q1 = quantile(Memory.Score, 0.25),
-    Q3 = quantile(Memory.Score, 0.75),
-    IQR = Q3 - Q1,
-    lower = max(min(Memory.Score), Q1 - 1.5 * IQR),
-    upper = min(max(Memory.Score), Q3 + 1.5 * IQR),
-    mean = mean(Memory.Score),
-    median = median(Memory.Score),
-    min = min(Memory.Score),
-    max = max(Memory.Score),
-    xpos = as.numeric(With.music.or.not),
-    .groups = "drop"
-  )
-
-ggplot(df, aes(
-  x = With.music.or.not,
-  y = Memory.Score
-)) +
-  geom_boxplot(
-    width = 0.25,
-    outlier.shape = 16,
-    outlier.size = 2.5,
-    color = "black",
-    fill = NA
-  ) +
-  geom_segment(
-    data = stats,
-    aes(x = xpos - 0.1, xend = xpos + 0.1, y = lower, yend = lower),
-    linewidth = 0.9
-  ) +
-  geom_segment(
-    data = stats,
-    aes(x = xpos - 0.1, xend = xpos + 0.1, y = upper, yend = upper),
-    linewidth = 0.9
-  ) +
-  geom_segment(
-    data = stats,
-    aes(x = xpos - 0.1, xend = xpos + 0.1, y = mean, yend = mean),
-    linewidth = 0.8,
-    linetype = "dashed"
-  ) +
-  geom_text(
-    data = stats,
-    aes(x = xpos + 0.15, y = median, label = paste0("Median: ", round(median, 2))),
-    hjust = 0,
-    size = 3.5
-  ) +
-  geom_text(
-    data = stats,
-    aes(x = xpos + 0.15, y = mean, label = paste0("Mean: ", round(mean, 2))),
-    hjust = 0,
-    size = 3.5
-  ) +
-  geom_text(
-    data = stats,
-    aes(x = xpos + 0.15, y = lower, label = paste0("Min: ", round(min, 2))),
-    hjust = 0,
-    size = 3.5
-  ) +
-  geom_text(
-    data = stats,
-    aes(x = xpos + 0.15, y = upper, label = paste0("Max: ", round(max, 2))),
-    hjust = 0,
-    size = 3.5
-  ) +
-  scale_y_continuous(limits = c(0, 22), breaks = seq(0, 20, 2)) +
-  labs(
-    title = "Score from Memory Test by With Background Music or Not",
-    x = "With Background Music or Not",
-    y = "Score from Memory Test"
-  ) +
-  theme_minimal(base_size = 14) +
-  theme(
-    panel.grid.major.x = element_blank(),
-    panel.grid.minor = element_blank(),
-    legend.position = "none"
-  )
 ```
 
 
@@ -404,26 +344,24 @@ ggplot(df, aes(
     ) +
     theme_minimal(base_size = 14)
 ```
-### Column 2 {.tabset width="50%"}
-#### Hypotheses 
+### Hypotheses 
 
 We hypothesize that participants with higher musical sophistication will perform worse on cognitive tasks when background music is present than participants with lower musical sophistication. This effect is expected because musically sophisticated individuals may engage more actively with the music, even unintentionally, reducing the cognitive resources available for task performance.
 
-#### GoldMSI
-explain goldmsi
+# Limitations
 
+## Column 1
+Limitations
+
+## Column 2 
+Further Research
 
 # Appendix 
 
 ## Everything {.tabset}
 
-### Other Graphs {.tabset}
+### Our Survey
 
-#### Heatmap
-Insert graphs
-
-#### etc 
-Insert graphs
 
 ### Article Reviews {.tabset}
 
